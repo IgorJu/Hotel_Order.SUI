@@ -60,11 +60,10 @@
 			isa = PBXGroup;
 			children = (
 				788908292AACCA3200B6B018 /* Hotel_TestTask_SUIApp.swift */,
-				7889082B2AACCA3200B6B018 /* HotelView.swift */,
-				7889083E2AACCDCD00B6B018 /* HotelViewModel.swift */,
+				788908402AACD52600B6B018 /* Hotel */,
 				7889083B2AACCBE400B6B018 /* Services */,
-				788908392AACCBAF00B6B018 /* HotelDetailsViewModel.swift */,
-				7889083C2AACCBF800B6B018 /* Hotel.swift */,
+				788908422AACD55500B6B018 /* HotelDetails */,
+				788908412AACD54600B6B018 /* Models */,
 				7889082D2AACCA3400B6B018 /* Assets.xcassets */,
 				7889082F2AACCA3400B6B018 /* Preview Content */,
 			);
@@ -85,6 +84,31 @@
 				788908372AACCAAD00B6B018 /* NetworkManager.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		788908402AACD52600B6B018 /* Hotel */ = {
+			isa = PBXGroup;
+			children = (
+				7889082B2AACCA3200B6B018 /* HotelView.swift */,
+				7889083E2AACCDCD00B6B018 /* HotelViewModel.swift */,
+			);
+			path = Hotel;
+			sourceTree = "<group>";
+		};
+		788908412AACD54600B6B018 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7889083C2AACCBF800B6B018 /* Hotel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		788908422AACD55500B6B018 /* HotelDetails */ = {
+			isa = PBXGroup;
+			children = (
+				788908392AACCBAF00B6B018 /* HotelDetailsViewModel.swift */,
+			);
+			path = HotelDetails;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
