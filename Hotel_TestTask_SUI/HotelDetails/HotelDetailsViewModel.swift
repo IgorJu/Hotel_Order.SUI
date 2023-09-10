@@ -20,6 +20,9 @@ class HotelDetailsViewModel: ObservableObject {
     var priceForIt: String {
         hotel.priceForIt
     }
+    var rating: Int {
+        hotel.rating
+    }
     
     var ratingName: String {
         hotel.ratingName
