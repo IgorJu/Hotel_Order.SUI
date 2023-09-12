@@ -16,6 +16,9 @@ class HotelDetailsViewModel: ObservableObject {
     var adress: String {
         hotel.adress
     }
+    var minimalPrice: Int {
+        hotel.minimalPrice
+    }
     
     var priceForIt: String {
         hotel.priceForIt
@@ -32,6 +35,13 @@ class HotelDetailsViewModel: ObservableObject {
         hotel.imageUrls
     }
     
+    var aboutTheHotel: AboutTheHotel {
+        hotel.aboutTheHotel
+    }
+    
+    var comforts = ["Удобства", "Что включено", "Что не включено"]
+    var images = ["emoji-happy", "tick-square", "close-square"]
+
     init(hotel: Hotel) {
         self.hotel = hotel
     }
