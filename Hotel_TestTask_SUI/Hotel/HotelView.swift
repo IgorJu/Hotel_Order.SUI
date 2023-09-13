@@ -10,6 +10,7 @@ import SwiftUI
 struct HotelView: View {
     
     @StateObject private var viewModel = HotelViewModel()
+    @State private var isRoomListViewPresented = false
     
     var body: some View {
         ScrollView {
@@ -82,16 +83,13 @@ struct HotelView: View {
                     
                     //информация
                     if let peculiarities = viewModel.hotel?.aboutTheHotel.peculiarities {
-                        LazyVGrid(columns: [GridItem()], spacing: 10) {
-                            ForEach(peculiarities, id: \.self) { peculiaritie in
-                                ViewForPeculiarities(text: peculiaritie, width: CGFloat(peculiaritie.count * 9))
-                                    .frame(width: 200)
-                            }
+                        ViewForPeculiarities(text: peculiarities[0], width: 350)
+                        HStack {
+                            ViewForPeculiarities(text: peculiarities[1], width: 130)
+                            ViewForPeculiarities(text: peculiarities[2], width: 215)
                         }
-                        .frame(alignment: .leading)
+                        ViewForPeculiarities(text: peculiarities[3], width: 170)
                     }
-                    
-                    
                     
                     // описание
                     if let description = viewModel.hotel?.aboutTheHotel.description {
@@ -104,20 +102,19 @@ struct HotelView: View {
                         NavigationView {
                             List {
                                 ForEach(comforts, id: \.self) { comfort in
-                                    NavigationLink(destination: EmptyView()) {
-                                        HStack {
-                                            Image(images[comforts.firstIndex(of: comfort) ?? 0])
-                                                .resizable()
-                                                .frame(width: 24, height: 24)
-                                                .aspectRatio(contentMode: .fit)
-                                            
-                                            VStack(alignment: .leading) {
-                                                fontSFPro(text: comfort, size: 16)
-                                                fontSFPro(text: "Самое необходимое", size: 14)
-                                                    .foregroundColor(.gray)
-                                            }
+                                    HStack {
+                                        Image(images[comforts.firstIndex(of: comfort) ?? 0])
+                                            .resizable()
+                                            .frame(width: 24, height: 24)
+                                            .aspectRatio(contentMode: .fit)
+                                        
+                                        VStack(alignment: .leading) {
+                                            fontSFPro(text: comfort, size: 16)
+                                            fontSFPro(text: "Самое необходимое", size: 14)
+                                                .foregroundColor(.gray)
                                         }
-                                        .onTapGesture { }
+                                        Spacer()
+                                        Image(systemName: "chevron.right")
                                     }
                                     .frame(width: 350, height: 40)
                                 }
@@ -130,7 +127,7 @@ struct HotelView: View {
                     }
                     
                     Button {
-                        
+                        isRoomListViewPresented = true
                     } label: {
                         ZStack {
                             RoundedRectangle(cornerRadius: 10)
@@ -141,8 +138,11 @@ struct HotelView: View {
                         }
                     }
                 }
-
             }
+            .fullScreenCover(isPresented: $isRoomListViewPresented) {
+                            RoomListView()
+                        }
+            
             .padding()
             .task {
                 await viewModel.fetchHotel()
@@ -150,6 +150,8 @@ struct HotelView: View {
         }
     }
     
+       
+    //MARK: - Private funcs
     private func formatNumber(_ number: Int) -> String {
         let formatter = NumberFormatter()
         formatter.numberStyle = .decimal
@@ -159,7 +161,7 @@ struct HotelView: View {
     
     private func fontSFPro(text: String, size: CGFloat) -> Text {
         Text(text)
-            .font(.custom("SF Pro Display", size: size))
+        .font(.custom("SF-Pro-Display-Regular", size: size))
     }
 }
 
