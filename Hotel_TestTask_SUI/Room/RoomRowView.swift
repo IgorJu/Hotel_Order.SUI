@@ -23,12 +23,12 @@ struct RoomRowView: View {
                             } placeholder: {
                                 ProgressView()
                             }
-                            .frame(width: 330, height: 280)
+                            .frame(width: 330, height: 260)
                             .cornerRadius(10)
                         }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .always))
-                    .frame(width: 330, height: 300, alignment: .center)
+                    .frame(width: 330, height: 260, alignment: .center)
                     .cornerRadius(10)
                     .aspectRatio( contentMode: .fit)
                     
@@ -38,11 +38,12 @@ struct RoomRowView: View {
                         .bold()
                     
                     //MARK: - Удобства
-                    VStack {
-                        ViewForPeculiarities(text: viewModel.peculiarities[0], width: CGFloat(viewModel.peculiarities[0].count * 10))
-                            .bold()
-                        ViewForPeculiarities(text: viewModel.peculiarities[1], width: 150)
-                    }
+                        HStack {
+                            ViewForPeculiarities(text: viewModel.peculiarities[0], width: CGFloat(viewModel.peculiarities[0].count * 9))
+                            ViewForPeculiarities(text: viewModel.peculiarities[1], width: CGFloat(viewModel.peculiarities[1].count * 9))
+                        }
+                        .frame(width: 330, alignment: .leading)
+                    
                     
                     //MARK: - Подробнее о номере
                     Button {
@@ -76,7 +77,7 @@ struct RoomRowView: View {
                     NavigationLink(destination: EmptyView()) {
                         ZStack {
                             RoundedRectangle(cornerRadius: 14)
-                                .frame(width: 340, height: 48)
+                                .frame(width: 330, height: 48)
                                 .foregroundColor(.blue)
                             Text("Выбрать номер")
                                 .font(.system(size: 19))
@@ -84,7 +85,7 @@ struct RoomRowView: View {
                         }
                     }
                 }
-                .padding(.leading, 45)
+                .padding(.leading, 15)
             
         
     }

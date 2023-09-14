@@ -100,12 +100,12 @@ struct HotelView: View {
                         
                         //MARK: - Информация
                         if let peculiarities = viewModel.hotel?.aboutTheHotel.peculiarities {
-                            ViewForPeculiarities(text: peculiarities[0], width: 350)
+                            ViewForPeculiarities(text: peculiarities[0], width: CGFloat(peculiarities[0].count * 8))
                             HStack {
-                                ViewForPeculiarities(text: peculiarities[1], width: 130)
-                                ViewForPeculiarities(text: peculiarities[2], width: 215)
+                                ViewForPeculiarities(text: peculiarities[1], width: CGFloat(peculiarities[1].count * 8))
+                                ViewForPeculiarities(text: peculiarities[2], width: CGFloat(peculiarities[2].count * 8))
                             }
-                            ViewForPeculiarities(text: peculiarities[3], width: 170)
+                            ViewForPeculiarities(text: peculiarities[3], width: CGFloat(peculiarities[3].count * 8))
                         }
                         
                         // описание
@@ -155,14 +155,14 @@ struct HotelView: View {
                             }
                         }
                     }
+                    .padding(30)
                 }
             }
-            
-            .padding()
             .task {
                 await viewModel.fetchHotel()
             }
         }
+        
     }
     
     //MARK: - Private funcs

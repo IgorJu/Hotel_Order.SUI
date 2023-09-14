@@ -17,9 +17,10 @@ struct ViewForPeculiarities: View {
                 .foregroundColor(.gray.opacity(0.05))
             Text(text)
                 .foregroundColor(.gray)
-                .font(.custom("SF Pro Display", size: 16))
+                .font(.custom("SF Pro Display", size: 14))
             
         }
+        .frame(width: width)
     }
 }
 

@@ -10,6 +10,7 @@ import SwiftUI
 enum API: String {
     case hotelURL = "https://run.mocky.io/v3/35e0d18e-2521-4f1b-a575-f0fe366f66e3"
     case roomsURL = "https://run.mocky.io/v3/f9a38183-6f95-43aa-853a-9c83cbb05ecd"
+    case bookingURL = "https://run.mocky.io/v3/e8868481-743f-4eb2-a0d7-2bc4012275c8"
 }
 
 enum NetworkError: Error {
@@ -48,6 +49,19 @@ final class NetworkManager {
             throw NetworkError.decodingError
         }
         return rooms.rooms
+    }
+
+    func fetchBooking() async throws -> Booking {
+        guard let url = URL(string: API.bookingURL.rawValue) else {
+            throw NetworkError.invalidURL
+        }
+        let (data, _) = try await URLSession.shared.data(from: url)
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        guard let booking = try? decoder.decode(Booking.self, from: data) else {
+            throw NetworkError.decodingError
+        }
+        return booking
     }
 
     

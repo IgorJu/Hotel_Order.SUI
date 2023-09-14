@@ -13,26 +13,22 @@ struct RoomListView: View {
     let nameHotel: String
     
     var body: some View {
-        NavigationView {
-            List(viewModel.rooms, id: \.name) { roomDetailsViewModel in
-                NavigationLink(destination: EmptyView()) {
-                    RoomRowView(viewModel: roomDetailsViewModel) // correct it
-                }
-            }
+        List(viewModel.rooms, id: \.name) { roomDetailsViewModel in
+            RoomRowView(viewModel: roomDetailsViewModel)
         }
-            .navigationBarBackButtonHidden(true)
-            .toolbar {
-                CustomBackButton(text: nameHotel)
-            }
-            
-            
+        
+        .toolbar {
+            CustomBackButton(text: nameHotel)
+        }
+        .navigationBarBackButtonHidden(true)
         
         .task {
             await viewModel.fetchRooms()
         }
     }
-    
 }
+    
+
 
 struct CustomBackButton: View {
     @Environment(\.presentationMode) var presentationMode
@@ -48,13 +44,16 @@ struct CustomBackButton: View {
                     .font(.system(size: 14))
                     .frame(alignment: .leading)
             }
+            Spacer()
             Text(text)
                 .foregroundColor(.black)
-                .font(.system(size: 20))
-                .frame(width: 300, height: 150)
+                .font(.system(size: 16))
+                .bold()
+                .frame(width: 300, height: 250, alignment: .center)
                 .lineLimit(nil)
             Spacer()
         }
+        
         
     }
 }
