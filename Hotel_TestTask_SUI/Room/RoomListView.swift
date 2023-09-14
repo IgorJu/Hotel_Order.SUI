@@ -10,6 +10,8 @@ import SwiftUI
 struct RoomListView: View {
     @StateObject private var viewModel = RoomListViewModel()
     
+    let nameHotel: String
+    
     var body: some View {
         NavigationView {
             List(viewModel.rooms, id: \.name) { roomDetailsViewModel in
@@ -17,8 +19,14 @@ struct RoomListView: View {
                     RoomRowView(viewModel: roomDetailsViewModel) // correct it
                 }
             }
-            .navigationTitle("here should be name of the hotel")
         }
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                CustomBackButton(text: nameHotel)
+            }
+            
+            
+        
         .task {
             await viewModel.fetchRooms()
         }
@@ -26,8 +34,33 @@ struct RoomListView: View {
     
 }
 
+struct CustomBackButton: View {
+    @Environment(\.presentationMode) var presentationMode
+    let text: String
+    
+    var body: some View {
+        HStack {
+            Button(action: {
+                self.presentationMode.wrappedValue.dismiss()
+            }) {
+                Image(systemName: "chevron.backward")
+                    .foregroundColor(.black)
+                    .font(.system(size: 14))
+                    .frame(alignment: .leading)
+            }
+            Text(text)
+                .foregroundColor(.black)
+                .font(.system(size: 20))
+                .frame(width: 300, height: 150)
+                .lineLimit(nil)
+            Spacer()
+        }
+        
+    }
+}
+
 struct RoomListView_Previews: PreviewProvider {
     static var previews: some View {
-        RoomListView()
+        RoomListView(nameHotel: "some hotel")
     }
 }

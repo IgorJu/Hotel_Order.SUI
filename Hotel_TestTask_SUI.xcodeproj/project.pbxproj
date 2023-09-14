@@ -21,7 +21,7 @@
 		78ABEEF72AB23E13006E32B8 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEF62AB23E13006E32B8 /* Room.swift */; };
 		78ABEEF92AB23FAC006E32B8 /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEF82AB23FAC006E32B8 /* RoomDetailsViewModel.swift */; };
 		78ABEEFB2AB24436006E32B8 /* RoomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEFA2AB24436006E32B8 /* RoomRowView.swift */; };
-		78ABEF282AB24E35006E32B8 /* Property List.plist in Resources */ = {isa = PBXBuildFile; fileRef = 78ABEF272AB24E35006E32B8 /* Property List.plist */; };
+		78E990CF2AB34EFD003912B7 /* FormatNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E990CE2AB34EFD003912B7 /* FormatNumber.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,7 +40,8 @@
 		78ABEEF62AB23E13006E32B8 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		78ABEEF82AB23FAC006E32B8 /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
 		78ABEEFA2AB24436006E32B8 /* RoomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRowView.swift; sourceTree = "<group>"; };
-		78ABEF272AB24E35006E32B8 /* Property List.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Property List.plist"; sourceTree = "<group>"; };
+		78E990CD2AB33BC0003912B7 /* Hotel-TestTask-SUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Hotel-TestTask-SUI-Info.plist"; sourceTree = SOURCE_ROOT; };
+		78E990CE2AB34EFD003912B7 /* FormatNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +66,6 @@
 		7889081D2AACCA3200B6B018 = {
 			isa = PBXGroup;
 			children = (
-				78ABEF272AB24E35006E32B8 /* Property List.plist */,
 				788908282AACCA3200B6B018 /* Hotel_TestTask_SUI */,
 				788908272AACCA3200B6B018 /* Products */,
 			);
@@ -82,12 +82,14 @@
 		788908282AACCA3200B6B018 /* Hotel_TestTask_SUI */ = {
 			isa = PBXGroup;
 			children = (
+				78E990CD2AB33BC0003912B7 /* Hotel-TestTask-SUI-Info.plist */,
 				788908292AACCA3200B6B018 /* Hotel_TestTask_SUIApp.swift */,
 				78429B9C2AB0B32000881C48 /* Support Views */,
 				788908402AACD52600B6B018 /* Hotel */,
 				78ABEEF52AB23DF7006E32B8 /* Room */,
 				7889083B2AACCBE400B6B018 /* Services */,
 				788908422AACD55500B6B018 /* HotelDetails */,
+				78E990D02AB34FD0003912B7 /* Support Functions */,
 				788908412AACD54600B6B018 /* Models */,
 				7889082D2AACCA3400B6B018 /* Assets.xcassets */,
 				7889082F2AACCA3400B6B018 /* Preview Content */,
@@ -148,6 +150,14 @@
 			path = Room;
 			sourceTree = "<group>";
 		};
+		78E990D02AB34FD0003912B7 /* Support Functions */ = {
+			isa = PBXGroup;
+			children = (
+				78E990CE2AB34EFD003912B7 /* FormatNumber.swift */,
+			);
+			path = "Support Functions";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -206,7 +216,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				78ABEF282AB24E35006E32B8 /* Property List.plist in Resources */,
 				788908312AACCA3400B6B018 /* Preview Assets.xcassets in Resources */,
 				7889082E2AACCA3400B6B018 /* Assets.xcassets in Resources */,
 			);
@@ -228,6 +237,7 @@
 				78ABEEF42AB23DEF006E32B8 /* RoomListViewModel.swift in Sources */,
 				7889082C2AACCA3200B6B018 /* HotelView.swift in Sources */,
 				78429B9B2AB0A85300881C48 /* ViewForPecularities.swift in Sources */,
+				78E990CF2AB34EFD003912B7 /* FormatNumber.swift in Sources */,
 				7889082A2AACCA3200B6B018 /* Hotel_TestTask_SUIApp.swift in Sources */,
 				7889083F2AACCDCD00B6B018 /* HotelViewModel.swift in Sources */,
 				78ABEEF72AB23E13006E32B8 /* Room.swift in Sources */,
@@ -362,6 +372,7 @@
 				DEVELOPMENT_TEAM = 25H4N2RW85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Hotel-TestTask-SUI-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -395,6 +406,7 @@
 				DEVELOPMENT_TEAM = 25H4N2RW85;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Hotel-TestTask-SUI-Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

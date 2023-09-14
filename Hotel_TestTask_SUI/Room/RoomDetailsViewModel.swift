@@ -14,7 +14,7 @@ class RoomDetailsViewModel: ObservableObject {
     var name: String {
         room.name
     }
-    var prive: Int {
+    var price: Int {
         room.price
     }
     var pricePer: String {
