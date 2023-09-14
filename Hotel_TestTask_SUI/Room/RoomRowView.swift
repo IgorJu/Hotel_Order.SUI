@@ -11,72 +11,89 @@ struct RoomRowView: View {
     let viewModel: RoomDetailsViewModel
     
     var body: some View {
-        VStack {
-            TabView {
-                ForEach(viewModel.imageURLs, id: \.self) { imageName in
-                    AsyncImage(url: URL(string: imageName)) { image in
-                        image
-                            .resizable()
-                            .aspectRatio(contentMode: .fill)
-                    } placeholder: {
-                        ProgressView()
+            
+                VStack.init(alignment: .leading){
+                    //MARK: - Таб вью с фотографиями
+                    TabView {
+                        ForEach(viewModel.imageURLs, id: \.self) { imageName in
+                            AsyncImage(url: URL(string: imageName)) { image in
+                                image
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fill)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            .frame(width: 330, height: 280)
+                            .cornerRadius(10)
+                        }
                     }
-                    .frame(width: 360, height: 300)
+                    .tabViewStyle(.page(indexDisplayMode: .always))
+                    .frame(width: 330, height: 300, alignment: .center)
                     .cornerRadius(10)
-                }
-            }
-            .tabViewStyle(.page(indexDisplayMode: .always))
-            .frame(width: 360, height: 300)
-            .cornerRadius(10)
-            .aspectRatio( contentMode: .fit)
-            
-            Text(viewModel.name)
-                .font(.system(size: 22))
-                .bold()
-            HStack {
-                ViewForPeculiarities(text: viewModel.peculiarities[0], width: CGFloat(viewModel.peculiarities[0].count * 10))
-                    .bold()
-                ViewForPeculiarities(text: viewModel.peculiarities[1], width: 150)
-            }
-            
-            Button {
-                
-            } label: {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 10)
-                        .frame(width: 250, height: 30)
-                        .foregroundColor(.blue.opacity(0.1))
-                    HStack {
-                        Text("Подробнее о номере")
-                            .font(.system(size: 14))
-                        Image(systemName: "chevron.right")
+                    .aspectRatio( contentMode: .fit)
+                    
+                    //MARK: - Название
+                    Text(viewModel.name)
+                        .font(.system(size: 22))
+                        .bold()
+                    
+                    //MARK: - Удобства
+                    VStack {
+                        ViewForPeculiarities(text: viewModel.peculiarities[0], width: CGFloat(viewModel.peculiarities[0].count * 10))
+                            .bold()
+                        ViewForPeculiarities(text: viewModel.peculiarities[1], width: 150)
+                    }
+                    
+                    //MARK: - Подробнее о номере
+                    Button {
+                        
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 5)
+                                .frame(width: 200, height: 30)
+                                .foregroundColor(.blue.opacity(0.1))
+                            HStack {
+                                Text("Подробнее о номере")
+                                    .font(.system(size: 14))
+                                    .bold()
+                                Image(systemName: "chevron.right")
+                            }
+                        }
+                        .frame(alignment: .leading)
+                    }
+                    
+                    //MARK: - Цена
+                    HStack.init(alignment: .firstTextBaseline) {
+                        Text("\(formatNumber(viewModel.price)) ₽")
+                            .font(.system(size: 26))
+                            .lineLimit(nil)
+                            .bold()
+                        Text(viewModel.pricePer)
+                            .font(.system(size: 16))
+                            .foregroundColor(.gray)
+                        
+                    }
+                    NavigationLink(destination: EmptyView()) {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 14)
+                                .frame(width: 340, height: 48)
+                                .foregroundColor(.blue)
+                            Text("Выбрать номер")
+                                .font(.system(size: 19))
+                                .foregroundColor(.white)
+                        }
                     }
                 }
-            }
-            HStack.init(alignment: .firstTextBaseline) {
-                Text("\(formatNumber(viewModel.price))) ₽")
-                    .font(.system(size: 26))
-                    .lineLimit(nil)
-                    .bold()
-                Text(viewModel.pricePer)
-                    .font(.system(size: 16))
-                    .foregroundColor(.gray)
-                
-            }
+                .padding(.leading, 45)
             
-            //        } else {
-            //            Image(systemName: "xmark.seal.fill")
-            //                .resizable()
-            //                .frame(width: 200, height: 200)
-            //        }
-        }
+        
     }
 }
 
 
 
-//struct RoomRowView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        RoomRowView(viewModel: RoomDetailsViewModel(room: Room(id: <#T##Int#>, name: "Luxe", price: 12400, pricePer: <#T##String#>, peculiarities: <#T##[String]#>, imageUrls: <#T##[String]#>)))
-//    }
-//}
+struct RoomRowView_Previews: PreviewProvider {
+    static var previews: some View {
+        RoomRowView(viewModel: RoomDetailsViewModel(room: Room(id: 1, name: "Luxe", price: 124000, pricePer: "за 7 ночей с перелетом", peculiarities: ["Включен только завтрак","Кондиционер"], imageUrls: [])))
+    }
+}

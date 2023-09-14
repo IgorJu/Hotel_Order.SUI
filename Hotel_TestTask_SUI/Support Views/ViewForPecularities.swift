@@ -12,9 +12,9 @@ struct ViewForPeculiarities: View {
     let width: CGFloat
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 5)
                 .frame(width: width, height: 26)
-                .foregroundColor(.gray.opacity(0.1))
+                .foregroundColor(.gray.opacity(0.05))
             Text(text)
                 .foregroundColor(.gray)
                 .font(.custom("SF Pro Display", size: 16))
