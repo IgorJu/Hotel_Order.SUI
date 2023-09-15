@@ -16,6 +16,7 @@ struct RoomListView: View {
         List(viewModel.rooms, id: \.name) { roomDetailsViewModel in
             RoomRowView(viewModel: roomDetailsViewModel)
         }
+        .frame(width: 410)
         
         .toolbar {
             CustomBackButton(text: nameHotel)

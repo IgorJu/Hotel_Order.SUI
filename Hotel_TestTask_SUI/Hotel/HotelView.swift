@@ -45,19 +45,9 @@ struct HotelView: View {
                     VStack(alignment: .leading) {
                         
                         //MARK: - Рейтинг
-                        ZStack {
-                            RoundedRectangle(cornerRadius: 10)
-                                .fill(Color.yellow.opacity(0.25))
-                                .frame(width: 160, height: 30)
-                            
-                            if let rating = viewModel.hotel?.rating,
-                               let ratingName = viewModel.hotel?.ratingName {
-                                fontSFPro(text: "★ \(rating) \(ratingName)", size: 16)
-                                    .foregroundColor(.yellow)
-                                    .bold()
-                            } else {
-                                Text("Рейтинг отеля недоступен")
-                            }
+                        if let rating = viewModel.hotel?.rating,
+                           let ratingName = viewModel.hotel?.ratingName {
+                            RatingView(rating: rating, ratingName: ratingName)
                         }
                         
                         //MARK: - Название
@@ -85,20 +75,16 @@ struct HotelView: View {
                                     .foregroundColor(.gray)
                                 
                             }
-                            
-                            //dividing line
-                            Path { path in
-                                path.move(to: CGPoint(x: -15, y: 0))
-                                path.addLine(to: CGPoint(x: 390, y: 0))
-                            }
-                            .stroke(Color.gray.opacity(0.1), lineWidth: 4)
-                            
-                            //об отеле
-                            fontSFPro(text: "Об отеле", size: 22)
-                                .bold()
                         }
                         
+                        //dividing line
+                        DivideLine(lineWidth: 4)
+                        
                         //MARK: - Информация
+                        //об отеле
+                        fontSFPro(text: "Об отеле", size: 22)
+                            .bold()
+                        
                         if let peculiarities = viewModel.hotel?.aboutTheHotel.peculiarities {
                             ViewForPeculiarities(text: peculiarities[0], width: CGFloat(peculiarities[0].count * 8))
                             HStack {
@@ -139,9 +125,7 @@ struct HotelView: View {
                                 }
                                 .frame(width: 400, height: 250)
                             }
-                            
                             .frame(width: 370, height: 230)
-                            
                         }
                         
                         //MARK: - к выбору номера
@@ -155,22 +139,19 @@ struct HotelView: View {
                             }
                         }
                     }
-                    .padding(30)
+                    .padding()
                 }
+                .padding(.horizontal, 10)
             }
+            
             .task {
                 await viewModel.fetchHotel()
             }
+            
         }
-        
-    }
-    
-    //MARK: - Private funcs
-    private func fontSFPro(text: String, size: CGFloat) -> Text {
-        Text(text)
-            .font(.system(size: size))
     }
 }
+
 
 
 struct ContentView_Previews: PreviewProvider {
