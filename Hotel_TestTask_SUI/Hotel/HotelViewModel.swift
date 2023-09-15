@@ -8,6 +8,7 @@
 import Foundation
 
 class HotelViewModel: ObservableObject {
+    
     @Published var hotel: HotelDetailsViewModel?
     
     func fetchHotel() async {

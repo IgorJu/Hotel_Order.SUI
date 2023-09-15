@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HotelView: View {
     
-    @StateObject private var viewModel = HotelViewModel()
-    
+    @StateObject var viewModel = HotelViewModel()
+
     var body: some View {
         NavigationView {
             ScrollView {
@@ -29,12 +29,12 @@ struct HotelView: View {
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                .frame(width: 360, height: 300)
+                                .frame(width: 360, height: 260)
                                 .cornerRadius(10)
                             }
                         }
                         .tabViewStyle(.page(indexDisplayMode: .always))
-                        .frame(width: 360, height: 300)
+                        .frame(width: 360, height: 260)
                         .cornerRadius(10)
                         .aspectRatio( contentMode: .fit)
                     } else {
@@ -51,7 +51,7 @@ struct HotelView: View {
                         }
                         
                         //MARK: - Название
-                        fontSFPro(text: viewModel.hotel?.name ?? "", size: 22)
+                        fontSFPro(text: viewModel.hotel?.name ?? "" , size: 22)
                             .padding(.bottom, 2)
                             .bold()
                         
@@ -59,7 +59,7 @@ struct HotelView: View {
                         Button {
                             
                         } label: {
-                            fontSFPro(text: viewModel.hotel?.adress ?? "", size: 14)
+                            fontSFPro(text: viewModel.hotel?.adress ?? "" , size: 14)
                                 .bold()
                                 .padding(.bottom, 1)
                         }
@@ -103,36 +103,40 @@ struct HotelView: View {
                         //удобства
                         if let comforts = viewModel.hotel?.comforts,
                            let images = viewModel.hotel?.images {
-                            NavigationView {
-                                List {
-                                    ForEach(comforts, id: \.self) { comfort in
-                                        HStack {
-                                            Image(images[comforts.firstIndex(of: comfort) ?? 0])
-                                                .resizable()
-                                                .frame(width: 24, height: 24)
-                                                .aspectRatio(contentMode: .fit)
-                                            
-                                            VStack(alignment: .leading) {
-                                                fontSFPro(text: comfort, size: 16)
-                                                fontSFPro(text: "Самое необходимое", size: 14)
-                                                    .foregroundColor(.gray)
-                                            }
-                                            Spacer()
-                                            Image(systemName: "chevron.right")
+                            VStack {
+                                ForEach(comforts, id: \.self) { comfort in
+                                    HStack {
+                                        Image(images[comforts.firstIndex(of: comfort) ?? 0])
+                                            .resizable()
+                                            .frame(width: 30, height: 30)
+                                            .aspectRatio(contentMode: .fit)
+                                        
+                                        VStack(alignment: .leading) {
+                                            fontSFPro(text: comfort, size: 16)
+                                            fontSFPro(text: "Самое необходимое", size: 14)
+                                                .foregroundColor(.gray)
                                         }
-                                        .frame(width: 350, height: 40)
+                                        
+                                        Spacer()
+                                        
+                                        Image(systemName: "chevron.right")
                                     }
+                                    
+                                    .frame(height: 60)
+                                    .padding(.horizontal, -10)
                                 }
-                                .frame(width: 400, height: 250)
+                                
+                                .padding(.horizontal, 20)
+                                
                             }
-                            .frame(width: 370, height: 230)
+                            .padding(.vertical, 20)
                         }
                         
                         //MARK: - к выбору номера
-                        NavigationLink(destination: RoomListView(nameHotel: viewModel.hotel?.name ?? "name is absent")) {
+                        NavigationLink(destination: RoomListView(nameHotel: viewModel.hotel?.name ?? "" )) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)
-                                    .frame(width: 370, height: 48)
+                                    .frame(height: 48)
                                 Text("К выбору номера")
                                     .font(.system(size: 19))
                                     .foregroundColor(.white)
@@ -141,13 +145,11 @@ struct HotelView: View {
                     }
                     .padding()
                 }
-                .padding(.horizontal, 10)
+                
+                .task {
+                    await viewModel.fetchHotel()
+                }
             }
-            
-            .task {
-                await viewModel.fetchHotel()
-            }
-            
         }
     }
 }
@@ -155,6 +157,7 @@ struct HotelView: View {
 
 
 struct ContentView_Previews: PreviewProvider {
+    
     static var previews: some View {
         HotelView()
     }
