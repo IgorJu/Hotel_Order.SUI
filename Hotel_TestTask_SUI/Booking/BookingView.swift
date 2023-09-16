@@ -9,33 +9,40 @@ import SwiftUI
 
 struct BookingView: View {
     
+    @State private var phoneNumber = ""
+    @State private var email = ""
+    @State private var maskedPhoneNumber = "+7 (***) ***-**-**"
+    
     @StateObject private var viewModel = BookingViewModel()
     
     var body: some View {
-        VStack {
-            VStack.init(alignment: .leading, spacing: 15) {
-                
-                //MARK: - Рейтинг, название, адрес
-                if let rating = viewModel.booking?.horating,
-                   let ratingName = viewModel.booking?.ratingName {
-                    RatingView(rating: rating, ratingName: ratingName)
-                }
-                
-                if let hotelName = viewModel.booking?.hotelName {
-                    fontSFPro(text: hotelName, size: 22)
-                        .bold()
-                }
-                
-                if let address = viewModel.booking?.hotelAdress {
-                    Button {
-                        
-                    } label: {
-                       fontSFPro(text: address, size: 14)
+        ScrollView {
+            VStack {
+                VStack.init(alignment: .leading, spacing: 15) {
+                    DivideLine(lineWidth: 7)
+                        .frame(height: 10)
+                    
+                    //MARK: - Рейтинг, название, адрес
+                    if let rating = viewModel.booking?.horating,
+                       let ratingName = viewModel.booking?.ratingName {
+                        RatingView(rating: rating, ratingName: ratingName)
+                    }
+                    
+                    if let hotelName = viewModel.booking?.hotelName {
+                        fontSFPro(text: hotelName, size: 22)
                             .bold()
                     }
                     
+                    if let address = viewModel.booking?.hotelAdress {
+                        Button {
+                            
+                        } label: {
+                            fontSFPro(text: address, size: 14)
+                                .bold()
+                        }
+                        
+                    }
                 }
-            }
                 //divide line
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
@@ -63,16 +70,40 @@ struct BookingView: View {
                 //divide line
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
+                //MARK: - Информация о покупателе
+                InfoCustomerView(phoneNumber: phoneNumber, email: email)
+                DivideLine(lineWidth: 7)
+                    .frame(height: 10)
+                    .padding(.top, 5)
+                TouristInformationView()
+                        
                 
-            
+            }
+            .padding()
+            .navigationBarBackButtonHidden(true)
+            .toolbar {
+                CustomBackButton(text: "Бронирование")
+            }
+            .task {
+                await viewModel.fetchBooking()
+            }
         }
-        .padding()
-                .task {
-                    await viewModel.fetchBooking()
-                }
-            
             
         
+    }
+}
+struct LabeledTextField: View {
+    var title: String
+    @Binding var text: String
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(title)
+                .font(.headline)
+            
+            TextField("", text: $text)
+                .textFieldStyle(RoundedBorderTextFieldStyle())
+        }
     }
 }
     
