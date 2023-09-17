@@ -36,6 +36,7 @@
 		78ABEEF72AB23E13006E32B8 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEF62AB23E13006E32B8 /* Room.swift */; };
 		78ABEEF92AB23FAC006E32B8 /* RoomDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEF82AB23FAC006E32B8 /* RoomDetailsViewModel.swift */; };
 		78ABEEFB2AB24436006E32B8 /* RoomRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78ABEEFA2AB24436006E32B8 /* RoomRowView.swift */; };
+		78DE956B2AB75A8E00E52312 /* PaidView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DE956A2AB75A8E00E52312 /* PaidView.swift */; };
 		78E990CF2AB34EFD003912B7 /* FormatNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78E990CE2AB34EFD003912B7 /* FormatNumber.swift */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		78ABEEF62AB23E13006E32B8 /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		78ABEEF82AB23FAC006E32B8 /* RoomDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomDetailsViewModel.swift; sourceTree = "<group>"; };
 		78ABEEFA2AB24436006E32B8 /* RoomRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoomRowView.swift; sourceTree = "<group>"; };
+		78DE956A2AB75A8E00E52312 /* PaidView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaidView.swift; sourceTree = "<group>"; };
 		78E990CD2AB33BC0003912B7 /* Hotel-TestTask-SUI-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Hotel-TestTask-SUI-Info.plist"; sourceTree = SOURCE_ROOT; };
 		78E990CE2AB34EFD003912B7 /* FormatNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormatNumber.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -135,6 +137,7 @@
 				788908292AACCA3200B6B018 /* Hotel_TestTask_SUIApp.swift */,
 				788908402AACD52600B6B018 /* Hotel */,
 				78ABEEF52AB23DF7006E32B8 /* Room */,
+				78DE956C2AB75A9600E52312 /* Paid */,
 				784505112AB3840E00B57E9E /* Booking */,
 				7889083B2AACCBE400B6B018 /* Services */,
 				78429B9C2AB0B32000881C48 /* Support Views */,
@@ -191,6 +194,14 @@
 				78ABEEFA2AB24436006E32B8 /* RoomRowView.swift */,
 			);
 			path = Room;
+			sourceTree = "<group>";
+		};
+		78DE956C2AB75A9600E52312 /* Paid */ = {
+			isa = PBXGroup;
+			children = (
+				78DE956A2AB75A8E00E52312 /* PaidView.swift */,
+			);
+			path = Paid;
 			sourceTree = "<group>";
 		};
 		78E990D02AB34FD0003912B7 /* Support Functions */ = {
@@ -278,6 +289,7 @@
 				784032C62AB625B40058B990 /* TouristInformationView.swift in Sources */,
 				7845050C2AB383E400B57E9E /* BookingViewModel.swift in Sources */,
 				78ABEEF22AB23DDE006E32B8 /* RoomListView.swift in Sources */,
+				78DE956B2AB75A8E00E52312 /* PaidView.swift in Sources */,
 				7845050A2AB383D300B57E9E /* BookingView.swift in Sources */,
 				78ABEEFB2AB24436006E32B8 /* RoomRowView.swift in Sources */,
 				784032C02AB616F10058B990 /* FormatPhoneNumber.swift in Sources */,

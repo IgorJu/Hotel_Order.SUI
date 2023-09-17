@@ -34,24 +34,21 @@ struct FinalPriceView: View {
                         .foregroundColor(.blue)
                 }
             }
-            Button {
-                
-            } label: {
+            NavigationLink(destination: PaidView()) {
                 ZStack {
-                    RoundedRectangle(cornerRadius: 15)
+                    RoundedRectangle(cornerRadius: 14)
                         .frame(width: 343, height: 48)
                         .foregroundColor(.blue)
                     fontSFPro(text: "Оплатить \(formatNumber(finalPrice)) ₽", size: 16)
-                        .foregroundColor(.white)
-                }
+                    .foregroundColor(.white)                }
+                
             }
-
         }
     }
 }
-
-struct FinalPriceView_Previews: PreviewProvider {
-    static var previews: some View {
-        FinalPriceView(tourPrice: 285000, fuelCharge: 2300, serviceCharge: 7500)
+    
+    struct FinalPriceView_Previews: PreviewProvider {
+        static var previews: some View {
+            FinalPriceView(tourPrice: 285000, fuelCharge: 2300, serviceCharge: 7500)
+        }
     }
-}
