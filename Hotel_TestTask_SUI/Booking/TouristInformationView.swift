@@ -8,39 +8,91 @@
 import SwiftUI
 
 struct TouristInformationView: View {
+    
+    @State var countOfTourist = 1
+    @State var addTouiristIsTapped = false
+    @State var infoTFisHidden = false
+    
     var body: some View {
         VStack {
             HStack {
-                fontSFPro(text: "Первый турист", size: 22)
+                fontSFPro(text: "\(numberInRussian(countOfTourist)) турист", size: 22)
                     .bold()
                 Spacer()
                 Button {
-                    
+                    withAnimation {
+                        infoTFisHidden.toggle()
+                    }
                 } label: {
                     ZStack {
                         RoundedRectangle(cornerRadius: 6)
                             .frame(width: 32, height: 32)
                             .foregroundColor(.blue.opacity(0.2))
-                        Image(systemName: "chevron.up")
-                            .frame(width: 6, height: 12)
+                        Image(systemName: "chevron.down")
+                                   .aspectRatio(contentMode: .fit)
+                                   .frame(width: 6, height: 12)
+                                   .rotationEffect(.degrees(infoTFisHidden ? 0 : 180))
+                                   
                     }
                 }
             }
-            CustomTFView(text: "Имя", placeHolder: "", textToWrite: "Иван", isHaveTitle: true)
-            CustomTFView(text: "Фамилия", placeHolder: "", textToWrite: "Иванов", isHaveTitle: true)
-            CustomTFView(text: "Дата рождения", placeHolder: "Дата рождения", textToWrite: "", isHaveTitle: false)
-            CustomTFView(text: "Гражданство", placeHolder: "Гражданство", textToWrite: "", isHaveTitle: false)
-            CustomTFView(text: "Номер загранпаспорта", placeHolder: "Номер загранпаспорта", textToWrite: "", isHaveTitle: false)
-            CustomTFView(text: "Срок действия загранпаспорта", placeHolder: "Срок действия загранпаспорта", textToWrite: "", isHaveTitle: false)
-            
-            
+                if !infoTFisHidden {
+                    TouristInfoTextFieldsView()
+                }
+            DivideLine(lineWidth: 7)
+                
+                .frame(height: 10)
+                .padding(.vertical, 5)
+                
+                if addTouiristIsTapped {
+                    TouristInformationView(countOfTourist: countOfTourist + 1)
+                }
+                
+                if !addTouiristIsTapped {
+                    HStack {
+                        fontSFPro(text: "Добавить туриста", size: 22)
+                            .bold()
+                        Spacer()
+                        Button {
+                            self.addTouiristIsTapped = true
+                        } label: {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 6)
+                                    .frame(width: 32, height: 32)
+                                    .foregroundColor(.blue)
+                                Image(systemName: "plus")
+                                    .frame(width: 6, height: 12)
+                                    .foregroundColor(.white)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        
+        
+        func numberInRussian(_ number: Int) -> String {
+            switch number {
+            case 1:
+                return "Первый"
+            case 2:
+                return "Второй"
+            case 3:
+                return "Третий"
+                // Добавьте другие случаи по мере необходимости
+            default:
+                return "\(number)ый"
+            }
         }
     }
-}
 
-
-struct TouristInformationView_Previews: PreviewProvider {
-    static var previews: some View {
-        TouristInformationView()
+    
+    
+    
+    
+    struct TouristInformationView_Previews: PreviewProvider {
+        static var previews: some View {
+            TouristInformationView(addTouiristIsTapped: true)
+        }
     }
-}

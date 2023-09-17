@@ -75,7 +75,19 @@ struct BookingView: View {
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
                     .padding(.top, 5)
+                
+                //MARK: - Турист и текоствые поля
                 TouristInformationView()
+                DivideLine(lineWidth: 7)
+                    .frame(height: 10)
+                
+                //MARK: - Итоговая цена
+                FinalPriceView(
+                    tourPrice: viewModel.booking?.tourPrice ?? 0,
+                    fuelCharge: viewModel.booking?.fuelCharge ?? 0,
+                    serviceCharge: viewModel.booking?.serviceCharge ?? 0
+                )
+                .padding(.top, 10)
                         
                 
             }
@@ -90,20 +102,6 @@ struct BookingView: View {
         }
             
         
-    }
-}
-struct LabeledTextField: View {
-    var title: String
-    @Binding var text: String
-    
-    var body: some View {
-        VStack(alignment: .leading) {
-            Text(title)
-                .font(.headline)
-            
-            TextField("", text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-        }
     }
 }
     
