@@ -7,7 +7,7 @@
 
 import Foundation
 
-class HotelViewModel: ObservableObject {
+final class HotelViewModel: ObservableObject {
     
     @Published var hotel: HotelDetailsViewModel?
     

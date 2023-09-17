@@ -22,7 +22,7 @@ struct BookingView: View {
                     DivideLine(lineWidth: 7)
                         .frame(height: 10)
                     
-                    //MARK: - Рейтинг, название, адрес
+                    //MARK:  Рейтинг, название, адрес
                     if let rating = viewModel.booking?.horating,
                        let ratingName = viewModel.booking?.ratingName {
                         RatingView(rating: rating, ratingName: ratingName)
@@ -40,14 +40,15 @@ struct BookingView: View {
                             fontSFPro(text: address, size: 14)
                                 .bold()
                         }
-                        
                     }
                 }
                 //divide line
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
                     .padding(.top, 10)
-                //MARK: - Информация о путешествии
+                
+                //MARK: Информация о путешествии
+                
                 if let departure = viewModel.booking?.departure,
                    let arrival = viewModel.booking?.arrivalCountry,
                    let dateStart = viewModel.booking?.tourDateStart,
@@ -70,26 +71,28 @@ struct BookingView: View {
                 //divide line
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
-                //MARK: - Информация о покупателе
+                
+                //MARK:  Информация о покупателе
+                
                 InfoCustomerView(phoneNumber: phoneNumber, email: email)
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
                     .padding(.top, 5)
                 
-                //MARK: - Турист и текоствые поля
+                //MARK:  Турист и текоствые поля
+                
                 TouristInformationView()
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
                 
-                //MARK: - Итоговая цена
+                //MARK:  Итоговая цена
+                
                 FinalPriceView(
                     tourPrice: viewModel.booking?.tourPrice ?? 0,
                     fuelCharge: viewModel.booking?.fuelCharge ?? 0,
                     serviceCharge: viewModel.booking?.serviceCharge ?? 0
                 )
                 .padding(.top, 10)
-                        
-                
             }
             .padding()
             .navigationBarBackButtonHidden(true)
@@ -100,8 +103,6 @@ struct BookingView: View {
                 await viewModel.fetchBooking()
             }
         }
-            
-        
     }
 }
     

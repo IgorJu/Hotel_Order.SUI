@@ -17,7 +17,6 @@ struct DivideLine: View {
             path.addLine(to: CGPoint(x: 390, y: 0))
         }
         .stroke(Color.gray.opacity(0.1), lineWidth: lineWidth)
-        
     }
 }
 

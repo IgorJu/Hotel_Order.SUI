@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookingDetailsViewModel: ObservableObject {
+final class BookingDetailsViewModel: ObservableObject {
     private let booking: Booking
     
     var id: Int {

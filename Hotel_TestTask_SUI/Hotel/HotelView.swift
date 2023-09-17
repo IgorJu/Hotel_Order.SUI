@@ -18,7 +18,8 @@ struct HotelView: View {
                     fontSFPro(text: "Отель", size: 18)
                         .bold()
                     
-                    //MARK: - табвью с картинками
+                    //MARK: Табвью с картинками
+                    
                     if let imageURLs = viewModel.hotel?.imageURLs {
                         TabView {
                             ForEach(imageURLs, id: \.self) { imageName in
@@ -44,18 +45,21 @@ struct HotelView: View {
                     }
                     VStack(alignment: .leading) {
                         
-                        //MARK: - Рейтинг
+                        //MARK: Рейтинг
+                        
                         if let rating = viewModel.hotel?.rating,
                            let ratingName = viewModel.hotel?.ratingName {
                             RatingView(rating: rating, ratingName: ratingName)
                         }
                         
-                        //MARK: - Название
+                        //MARK: Название
+                        
                         fontSFPro(text: viewModel.hotel?.name ?? "" , size: 22)
                             .padding(.bottom, 2)
                             .bold()
                         
-                        //MARK: - Адрес
+                        //MARK: Адрес
+                        
                         Button {
                             
                         } label: {
@@ -64,7 +68,8 @@ struct HotelView: View {
                                 .padding(.bottom, 1)
                         }
                         
-                        //MARK: - Цена
+                        //MARK: Цена
+                        
                         if let minimalPrice = viewModel.hotel?.minimalPrice,
                            let priceForIt = viewModel.hotel?.priceForIt {
                             
@@ -73,14 +78,13 @@ struct HotelView: View {
                                     .bold()
                                 fontSFPro(text: priceForIt, size: 16)
                                     .foregroundColor(.gray)
-                                
                             }
                         }
                         
-                        //dividing line
                         DivideLine(lineWidth: 4)
                         
-                        //MARK: - Информация
+                        //MARK: Информация
+                        
                         //об отеле
                         fontSFPro(text: "Об отеле", size: 22)
                             .bold()
@@ -132,7 +136,7 @@ struct HotelView: View {
                             .padding(.vertical, 20)
                         }
                         
-                        //MARK: - к выбору номера
+                        //MARK: К выбору номера
                         NavigationLink(destination: RoomListView(nameHotel: viewModel.hotel?.name ?? "" )) {
                             ZStack {
                                 RoundedRectangle(cornerRadius: 10)

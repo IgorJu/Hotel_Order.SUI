@@ -7,12 +7,11 @@
 
 import Foundation
 
-struct HotelR: Codable {
+struct HotelR: Decodable {
     let rooms: [Room]
 }
 
-// MARK: - Room
-struct Room: Codable {
+struct Room: Decodable {
     let id: Int
     let name: String
     let price: Int

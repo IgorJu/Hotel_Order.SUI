@@ -12,8 +12,8 @@ struct CustomTFView: View {
     let text: String
     let placeHolder: String
     @State var textToWrite: String
-    let isHaveTitle: Bool
     
+    let isHaveTitle: Bool
     
     var body: some View {
         

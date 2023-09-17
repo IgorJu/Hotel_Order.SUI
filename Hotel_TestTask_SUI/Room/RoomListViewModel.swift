@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RoomListViewModel: ObservableObject {
+final class RoomListViewModel: ObservableObject {
     @Published var rooms: [RoomDetailsViewModel] = []
     
     func fetchRooms() async {

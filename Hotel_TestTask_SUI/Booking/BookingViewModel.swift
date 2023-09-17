@@ -7,7 +7,7 @@
 
 import Foundation
 
-class BookingViewModel: ObservableObject {
+final class BookingViewModel: ObservableObject {
     
     @Published var booking: BookingDetailsViewModel?
     

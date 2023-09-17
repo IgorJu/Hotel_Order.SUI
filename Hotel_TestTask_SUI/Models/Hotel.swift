@@ -19,7 +19,6 @@ struct Hotel: Decodable {
 
 }
 
-// MARK: - AboutTheHotel
 struct AboutTheHotel: Decodable {
     let description: String
     let peculiarities: [String]

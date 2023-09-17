@@ -29,70 +29,54 @@ struct TouristInformationView: View {
                             .frame(width: 32, height: 32)
                             .foregroundColor(.blue.opacity(0.2))
                         Image(systemName: "chevron.down")
-                                   .aspectRatio(contentMode: .fit)
-                                   .frame(width: 6, height: 12)
-                                   .rotationEffect(.degrees(infoTFisHidden ? 0 : 180))
-                                   
+                            .aspectRatio(contentMode: .fit)
+                            .frame(width: 6, height: 12)
+                            .rotationEffect(.degrees(infoTFisHidden ? 0 : 180))
+                        
                     }
                 }
             }
-                if !infoTFisHidden {
-                    TouristInfoTextFieldsView()
-                }
+            if !infoTFisHidden {
+                TouristInfoTextFieldsView()
+            }
             DivideLine(lineWidth: 7)
-                
+            
                 .frame(height: 10)
                 .padding(.vertical, 5)
-                
-                if addTouiristIsTapped {
-                    TouristInformationView(countOfTourist: countOfTourist + 1)
-                }
-                
-                if !addTouiristIsTapped {
-                    HStack {
-                        fontSFPro(text: "Добавить туриста", size: 22)
-                            .bold()
-                        Spacer()
-                        Button {
-                            self.addTouiristIsTapped = true
-                        } label: {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 6)
-                                    .frame(width: 32, height: 32)
-                                    .foregroundColor(.blue)
-                                Image(systemName: "plus")
-                                    .frame(width: 6, height: 12)
-                                    .foregroundColor(.white)
-                            }
+            
+            if addTouiristIsTapped {
+                TouristInformationView(countOfTourist: countOfTourist + 1)
+            }
+            
+            if !addTouiristIsTapped {
+                HStack {
+                    fontSFPro(text: "Добавить туриста", size: 22)
+                        .bold()
+                    Spacer()
+                    Button {
+                        self.addTouiristIsTapped = true
+                    } label: {
+                        ZStack {
+                            RoundedRectangle(cornerRadius: 6)
+                                .frame(width: 32, height: 32)
+                                .foregroundColor(.blue)
+                            Image(systemName: "plus")
+                                .frame(width: 6, height: 12)
+                                .foregroundColor(.white)
                         }
                     }
                 }
             }
         }
-        
-        
-        
-        func numberInRussian(_ number: Int) -> String {
-            switch number {
-            case 1:
-                return "Первый"
-            case 2:
-                return "Второй"
-            case 3:
-                return "Третий"
-                // Добавьте другие случаи по мере необходимости
-            default:
-                return "\(number)ый"
-            }
-        }
     }
+}
 
-    
-    
-    
-    
-    struct TouristInformationView_Previews: PreviewProvider {
-        static var previews: some View {
-            TouristInformationView(addTouiristIsTapped: true)
-        }
+
+
+
+
+struct TouristInformationView_Previews: PreviewProvider {
+    static var previews: some View {
+        TouristInformationView(addTouiristIsTapped: true)
     }
+}

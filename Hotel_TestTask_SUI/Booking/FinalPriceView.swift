@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct FinalPriceView: View {
+    
     let tourPrice: Int
     let fuelCharge: Int
     let serviceCharge: Int
+    
     var finalPrice: Int {
         tourPrice + fuelCharge + serviceCharge
     }
-    
     
     var body: some View {
         VStack {

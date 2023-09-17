@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RoomDetailsViewModel: ObservableObject {
+final class RoomDetailsViewModel: ObservableObject {
     
     private let room: Room
     

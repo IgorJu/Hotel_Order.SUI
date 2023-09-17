@@ -35,7 +35,6 @@ struct TripInformationView: View {
             .foregroundColor(.gray)
             .padding(.trailing, 20)
             
-            
             VStack.init(alignment: .leading, spacing: 20) {
                 fontSFPro(text: departure, size: 16)
                 fontSFPro(text: arrival, size: 16)

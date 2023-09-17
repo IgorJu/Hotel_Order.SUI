@@ -6,7 +6,7 @@
 //
 import SwiftUI
 
-class HotelDetailsViewModel: ObservableObject {
+final class HotelDetailsViewModel: ObservableObject {
     
     private let hotel: Hotel
     

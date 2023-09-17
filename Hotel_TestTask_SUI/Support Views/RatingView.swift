@@ -7,12 +7,13 @@
 
 import SwiftUI
 
+//MARK:  Рейтинг
 struct RatingView: View {
     let rating: Int
     let ratingName: String
     
     var body: some View {
-        //MARK: - Рейтинг
+        
         ZStack {
             RoundedRectangle(cornerRadius: 10)
                 .fill(Color.yellow.opacity(0.25))
