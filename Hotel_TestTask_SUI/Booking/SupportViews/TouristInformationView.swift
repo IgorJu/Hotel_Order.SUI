@@ -12,6 +12,7 @@ struct TouristInformationView: View {
     @State var countOfTourist = 1
     @State var addTouiristIsTapped = false
     @State var infoTFisHidden = false
+    @Binding var textToWrite: String
     
     var body: some View {
         VStack {
@@ -37,7 +38,7 @@ struct TouristInformationView: View {
                 }
             }
             if !infoTFisHidden {
-                TouristInfoTextFieldsView()
+                TouristInfoTextFieldsView(textToWrite: $textToWrite)
             }
             DivideLine(lineWidth: 7)
             
@@ -45,7 +46,7 @@ struct TouristInformationView: View {
                 .padding(.vertical, 5)
             
             if addTouiristIsTapped {
-                TouristInformationView(countOfTourist: countOfTourist + 1)
+                TouristInformationView(countOfTourist: countOfTourist + 1, textToWrite: $textToWrite)
             }
             
             if !addTouiristIsTapped {
@@ -76,7 +77,9 @@ struct TouristInformationView: View {
 
 
 struct TouristInformationView_Previews: PreviewProvider {
+    @State private static var text = ""
+    
     static var previews: some View {
-        TouristInformationView(addTouiristIsTapped: true)
+        TouristInformationView(addTouiristIsTapped: true, textToWrite: $text)
     }
 }

@@ -9,6 +9,9 @@ import SwiftUI
 
 struct FinalPriceView: View {
     
+    @Binding var textToWrite: String
+    @State private var isAlertVisible = false
+    
     let tourPrice: Int
     let fuelCharge: Int
     let serviceCharge: Int
@@ -41,15 +44,26 @@ struct FinalPriceView: View {
                         .frame(width: 343, height: 48)
                         .foregroundColor(.blue)
                     fontSFPro(text: "Оплатить \(formatNumber(finalPrice)) ₽", size: 16)
-                    .foregroundColor(.white)                }
-                
+                        .foregroundColor(.white)
+                }
             }
+            .onTapGesture {
+                if textToWrite.isEmpty {
+                    isAlertVisible = true // Показать Alert при нажатии кнопки оплаты, если текст пустой
+                }
+            }
+            .alert(isPresented: $isAlertVisible) {
+                Alert(title: Text("Заполните отмеченные поля"))
+            }
+            
         }
     }
 }
+
+struct FinalPriceView_Previews: PreviewProvider {
+    @State private static var textToWrite: String = ""
     
-    struct FinalPriceView_Previews: PreviewProvider {
-        static var previews: some View {
-            FinalPriceView(tourPrice: 285000, fuelCharge: 2300, serviceCharge: 7500)
-        }
+    static var previews: some View {
+        FinalPriceView(textToWrite: $textToWrite, tourPrice: 285000, fuelCharge: 2300, serviceCharge: 7500)
     }
+}

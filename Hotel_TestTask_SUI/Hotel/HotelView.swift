@@ -10,7 +10,7 @@ import SwiftUI
 struct HotelView: View {
     
     @StateObject var viewModel = HotelViewModel()
-
+    
     var body: some View {
         NavigationView {
             ScrollView {

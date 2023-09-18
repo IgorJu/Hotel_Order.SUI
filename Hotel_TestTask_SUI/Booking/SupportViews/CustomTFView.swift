@@ -13,14 +13,21 @@ struct CustomTFView: View {
     let placeHolder: String
     @State var textToWrite: String
     
+    
     let isHaveTitle: Bool
     
     var body: some View {
         
         ZStack {
-            RoundedRectangle(cornerRadius: 10)
-                .frame(width: 343, height: 52)
-                .foregroundColor(.gray.opacity(0.1))
+            if textToWrite.isEmpty {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 343, height: 52)
+                    .foregroundColor(Color(red: 235/255, green: 87/255, blue: 87/255, opacity: 0.15))
+            } else {
+                RoundedRectangle(cornerRadius: 10)
+                    .frame(width: 343, height: 52)
+                    .foregroundColor(.gray.opacity(0.1))
+            }
             if isHaveTitle {
                 VStack.init(alignment: .leading) {
                     Text(text)
@@ -35,11 +42,12 @@ struct CustomTFView: View {
                 TextField(placeHolder, text: $textToWrite)
                     .textFieldStyle(.plain)
                     .padding(.horizontal, 16)
-                
+                        }
+                    }
             }
         }
-    }
-}
+    
+
 
 struct CustomTFView_Previews: PreviewProvider {
     static var previews: some View {

@@ -74,13 +74,14 @@ struct RoomRowView: View {
                     .foregroundColor(.gray)
                 
             }
+
             NavigationLink(destination: BookingView()) {
                 ZStack {
                     RoundedRectangle(cornerRadius: 14)
-                        .frame(width: 330, height: 48)
+                        .frame(width: 343, height: 48)
                         .foregroundColor(.blue)
                     Text("Выбрать номер")
-                        .font(.system(size: 19))
+                        .font(.system(size: 16))
                         .foregroundColor(.white)
                 }
             }

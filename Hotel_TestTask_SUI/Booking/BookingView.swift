@@ -12,6 +12,7 @@ struct BookingView: View {
     @State private var phoneNumber = ""
     @State private var email = ""
     @State private var maskedPhoneNumber = "+7 (***) ***-**-**"
+    @State private var textToWrite = ""
     
     @StateObject private var viewModel = BookingViewModel()
     
@@ -81,13 +82,14 @@ struct BookingView: View {
                 
                 //MARK:  Турист и текоствые поля
                 
-                TouristInformationView()
+                TouristInformationView(textToWrite: $textToWrite)
                 DivideLine(lineWidth: 7)
                     .frame(height: 10)
                 
                 //MARK:  Итоговая цена
                 
                 FinalPriceView(
+                    textToWrite: $textToWrite,
                     tourPrice: viewModel.booking?.tourPrice ?? 0,
                     fuelCharge: viewModel.booking?.fuelCharge ?? 0,
                     serviceCharge: viewModel.booking?.serviceCharge ?? 0

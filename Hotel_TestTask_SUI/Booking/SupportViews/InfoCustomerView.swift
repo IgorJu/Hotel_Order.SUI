@@ -15,8 +15,8 @@ struct InfoCustomerView: View {
         VStack {
             fontSFPro(text: "Информация о покупателе", size: 22)
                 .bold()
-            CustomTFView(text: "Номер телефона", placeHolder: "", textToWrite: phoneNumber, isHaveTitle: true)
-            CustomTFView(text: "Почта", placeHolder: "", textToWrite: email, isHaveTitle: true)
+            PhoneTexFieldView(text: "Номер телефона", placeHolder: "")
+            MailTextFieldView(text: "Почта", placeHolder: "", editingText: "")
             fontSFPro(text: "Эти данные никому не передаются. После оплаты мы вышли чек на указанный вами номер и почту", size: 14)
                 .foregroundColor(.gray)
                 
