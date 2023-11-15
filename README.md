@@ -1,4 +1,4 @@
-# Hotel_TestTask_MVVM.SUI
+# Hotel-Order_MVVM.SUI
 Тестовое приложение для кампании
 
 
